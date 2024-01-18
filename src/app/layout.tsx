@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeModeScript } from "flowbite-react";
 import { DarkThemeToggle, Flowbite } from "flowbite-react";
-import NavLinks from "../components/nav-links/nav-links";
+import NavLinks from "@components/nav-links";
 
 const inter = Inter({ subsets: ["latin"] });
 
