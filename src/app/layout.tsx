@@ -28,7 +28,7 @@ export default function RootLayout({
           <div className="flex justify-end items-center gap-5 p-2">
             <p>Toggle theme</p>
             <Flowbite>
-              <DarkThemeToggle />
+              <DarkThemeToggle className="border border-gray-500 dark:border-white" />
             </Flowbite>
           </div>
         </nav>
