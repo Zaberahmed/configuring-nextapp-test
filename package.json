@@ -1,5 +1,7 @@
 {
   "name": "configuring-nextapp-test",
+  "author": "Sk. Zaber Ahmed",
+  "description": "A template for creating a production-ready fullstack Next.js application",
   "version": "0.1.0",
   "private": true,
   "scripts": {
