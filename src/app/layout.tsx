@@ -1,11 +1,8 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeModeScript } from "flowbite-react";
-import { DarkThemeToggle, Flowbite } from "flowbite-react";
+import { ubuntu } from "@components/fonts";
 import NavLinks from "@components/nav-links";
-
-const inter = Inter({ subsets: ["latin"] });
+import { DarkThemeToggle, Flowbite, ThemeModeScript } from "flowbite-react";
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Next-test",
@@ -22,7 +19,7 @@ export default function RootLayout({
       <head>
         <ThemeModeScript />
       </head>
-      <body className={inter.className}>
+      <body className={ubuntu.className}>
         <nav className="flex justify-between">
           <NavLinks />
           <div className="flex justify-end items-center gap-5 p-2">
