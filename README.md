@@ -1,14 +1,14 @@
-# Git commit message standard terminologyimport React from 'react'
+# Git commit message standard terminology
 
-Add Create a capability e.g. feature, test, dependency.
-Update Update or change configuration file or rules
-Cut Remove a capability e.g. feature, test, dependency.
-Fix Fix an issue e.g. bug, typo, accident, misstatement.
-Bump Increase the version of something e.g. dependency.
-Make Change the build process, or tooling, or infra.
-Start Begin doing something; e.g. create a feature flag.
-Stop End doing something; e.g. remove a feature flag.
-Refactor A code change that MUST be just a refactoring.
-Reformat Refactor of formatting, e.g. omit whitespace.
-Optimize Refactor of performance, e.g. speed up code.
-Document Refactor of documentation, e.g. help files.
+- <span style="font-size: 1.2em;">**Add:**</span> Create a capability e.g. feature, test, dependency.
+- <span style="font-size: 1.2em;">**Update:**</span> Update or change configuration file or rules.
+- <span style="font-size: 1.2em;">**Cut:**</span> Remove a capability e.g. feature, test, dependency.
+- <span style="font-size: 1.2em;">**Fix:**</span> Fix an issue e.g. bug, typo, accident, misstatement.
+- <span style="font-size: 1.2em;">**Bump:**</span> Increase the version of something e.g. dependency.
+- <span style="font-size: 1.2em;">**Make:**</span> Change the build process, or tooling, or infra.
+- <span style="font-size: 1.2em;">**Start:**</span> Begin doing something; e.g. create a feature flag.
+- <span style="font-size: 1.2em;">**Stop:**</span> End doing something; e.g. remove a feature flag.
+- <span style="font-size: 1.2em;">**Refactor:**</span> A code change that MUST be just a refactoring.
+- <span style="font-size: 1.2em;">**Reformat:**</span> Refactor of formatting, e.g. omit whitespace.
+- <span style="font-size: 1.2em;">**Optimize:**</span> Refactor of performance, e.g. speed up code.
+- <span style="font-size: 1.2em;">**Document:**</span> Refactor of documentation, e.g. help files.

@@ -11,10 +11,6 @@ export const NavLinkMenus: TNavLinkMenu[] = [
     name: "Contact",
     pathname: "/contact",
   },
-  {
-    name: "Login",
-    pathname: "/login",
-  },
 ];
 export type TNavLinkMenu = {
   name: string;
