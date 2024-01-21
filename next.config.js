@@ -4,7 +4,6 @@ const nextConfig = {
     typedRoutes: true,
   },
   logging: {
-
     fetches: {
       fullUrl: true,
     },
