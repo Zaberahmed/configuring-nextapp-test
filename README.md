@@ -1,6 +1,7 @@
 # Git commit message standard terminologyimport React from 'react'
 
 Add Create a capability e.g. feature, test, dependency.
+Update Update or change configuration file or rules
 Cut Remove a capability e.g. feature, test, dependency.
 Fix Fix an issue e.g. bug, typo, accident, misstatement.
 Bump Increase the version of something e.g. dependency.
