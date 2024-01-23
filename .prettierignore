@@ -3,3 +3,5 @@ node_modules
 dist
 build
 out
+package.json
+package-lock.json

@@ -1,37 +1,33 @@
 "use server";
 
-export type State =
-  | {
-      status: "success";
-      message: string;
-    }
-  | {
-      status: "error";
-      message: string;
-      errors?: Array<{
-        path: string;
-        message: string;
-      }>;
-    }
-  | null;
+import { LoginFormSchema } from "./validation";
+
+export type State = {
+  status: "success" | "error";
+  message: string;
+} | null;
 
 export const authenticate = async (prevState: State, formData: FormData): Promise<State> => {
+  const rawFormData = {
+    email: formData.get("email"),
+    password: formData.get("password"),
+  };
+
+  const validatedFields = LoginFormSchema.safeParse(rawFormData);
+
+  if (!validatedFields.success) {
+    return {
+      status: "error",
+      message: "Invalid form data",
+    };
+  }
+
   try {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // const rawFormData = Object.fromEntries(formData.entries());
-    // const validatedFields = LoginFormSchema.safeParse(rawFormData);
-
-    // if (!validatedFields.success) {
-    //   return {
-    //     status: "error",
-    //     errors: validatedFields
-    //     message: "Missing Fields. Failed to Create Invoice.",
-    //   };
-    // }
     return {
       status: "success",
-      message: `Welcome, user with ${formData.get("email")} as email and ${formData.get("")} as password!`,
+      message: `Welcome, user with ${formData.get("email")} as email and ${formData.get("password")} as password!`,
     };
   } catch (error) {
     console.error("Error");

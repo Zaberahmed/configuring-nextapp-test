@@ -21,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           richColors
           position="bottom-right"
           visibleToasts={1}
+          duration={3000}
         />
       </body>
     </html>

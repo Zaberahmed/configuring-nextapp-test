@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Label, TextInput } from "flowbite-react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { State, authenticate } from "./actions";
@@ -10,17 +10,19 @@ import { LoginFormFields, LoginFormSchema } from "./validation";
 
 const LoginForm = () => {
   const [state, formAction] = useFormState<State, FormData>(authenticate, null);
-  const { pending } = useFormStatus();
+
   const { register } = useForm<LoginFormFields>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
-    mode: "all",
   });
+
   if (state?.status === "success") {
-    toast.success("Successfully logged in!");
+    toast.success(`${state?.message}`);
+  } else {
+    toast.error(`${state?.message}`);
   }
 
   return (
@@ -57,11 +59,7 @@ const LoginForm = () => {
           />
         </div>
 
-        <Button
-          type="submit"
-          disabled={pending}>
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </form>
     </main>
   );
