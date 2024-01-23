@@ -20,9 +20,9 @@ const LoginForm = () => {
   });
 
   if (state?.status === "success") {
-    toast.success(`${state?.message}`);
+    toast.success(state?.message);
   } else {
-    toast.error(`${state?.message}`);
+    toast.error(state?.message);
   }
 
   return (
@@ -60,6 +60,7 @@ const LoginForm = () => {
         </div>
 
         <Button type="submit">Submit</Button>
+        {/*Need to disable button if values are not filled or status pending*/}
       </form>
     </main>
   );

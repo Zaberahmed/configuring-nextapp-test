@@ -15,7 +15,7 @@ module.exports = {
     "type-enum": [
       2,
       "always",
-      ["Add", "Update", "Create", "Cut", "Start", "Stop", "Reformat", "Optimize", "Document", "Bump", "Make", "Fix"],
+      ["Add", "Update", "Create", "Cut", "Start", "Stop", "Refactor", "Optimize", "Document", "Bump", "Make", "Fix"],
     ],
   },
 };

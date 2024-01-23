@@ -9,6 +9,5 @@
 - <span style="font-size: 1.2em;">**Start:**</span> Begin doing something; e.g. create a feature flag.
 - <span style="font-size: 1.2em;">**Stop:**</span> End doing something; e.g. remove a feature flag.
 - <span style="font-size: 1.2em;">**Refactor:**</span> A code change that MUST be just a refactoring.
-- <span style="font-size: 1.2em;">**Reformat:**</span> Refactor of formatting, e.g. omit whitespace.
 - <span style="font-size: 1.2em;">**Optimize:**</span> Refactor of performance, e.g. speed up code.
 - <span style="font-size: 1.2em;">**Document:**</span> Refactor of documentation, e.g. help files.
