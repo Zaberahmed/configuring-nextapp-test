@@ -1,5 +1,6 @@
 "use server";
 
+import { convertToSentenceCase } from "@utils";
 import { LoginFormSchema } from "./validation";
 
 export type State = {
@@ -23,13 +24,25 @@ export const authenticate = async (prevState: State, formData: FormData): Promis
   }
 
   try {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const res = await fetch(`${process.env.DUMMY_BASEURL}/authaccount/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(rawFormData),
+    });
+    const data = await res.json();
 
-    return {
-      status: "success",
-      message: `Welcome, user with ${formData.get("email")} as email and ${formData.get("password")} as password!`,
-    };
+    if (data?.message === "success") {
+      return {
+        status: "success",
+        message: "Successfully logged in!",
+      };
+    }
+    throw new Error(`${convertToSentenceCase(data?.message)}` || "Login failed!");
   } catch (error) {
-    console.error("Error");
+    console.error("Error message:", error.message);
+    return {
+      status: "error",
+      message: `${error.message}`,
+    };
   }
 };
