@@ -1,13 +1,13 @@
 import { Button } from "flowbite-react";
 import { useFormStatus } from "react-dom";
 
-const SubmitButton = ({ isValid }: { isValid: boolean }) => {
+const SubmitButton = () => {
   const { pending } = useFormStatus();
   return (
     <Button
       type="submit"
-      disabled={pending || !isValid}
-      aria-disabled={pending || !isValid}>
+      disabled={pending}
+      aria-disabled={pending}>
       Submit
     </Button>
   );

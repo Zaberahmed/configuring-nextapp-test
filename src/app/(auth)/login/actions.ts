@@ -1,27 +1,26 @@
 "use server";
 
 import { convertToSentenceCase } from "@utils";
-import { unstable_noStore } from "next/cache";
+import { unstable_noStore as no_cache } from "next/cache";
 import { LoginFormSchema } from "./validation";
 
 export type State = {
-  status: "success" | "error";
+  status: "success" | "error" | "validation-error";
   message: string;
+  errors?: {
+    email?: string[] | undefined;
+    password?: string[] | undefined;
+  };
 } | null;
 
 export const authenticate = async (prevState: State, formData: FormData): Promise<State> => {
-  unstable_noStore();
-  const rawFormData = {
-    email: formData.get("email"),
-    password: formData.get("password"),
-  };
-
-  const validatedFields = LoginFormSchema.safeParse(rawFormData);
-  //Need to show custom error message for each field
+  no_cache();
+  const { rawFormData, validatedFields } = validateFormData(formData);
   if (!validatedFields.success) {
     return {
-      status: "error",
+      status: "validation-error",
       message: "Invalid form data",
+      errors: validatedFields.error.flatten().fieldErrors,
     };
   }
 
@@ -33,7 +32,7 @@ export const authenticate = async (prevState: State, formData: FormData): Promis
     });
     const data = await res.json();
 
-    if (data?.message === "success") {
+    if (data && data?.message === "success") {
       return {
         status: "success",
         message: "Successfully logged in!",
@@ -41,10 +40,27 @@ export const authenticate = async (prevState: State, formData: FormData): Promis
     }
     throw new Error(convertToSentenceCase(data?.message) || "Login failed!");
   } catch (error) {
-    console.error("Error message:", error.message);
-    return {
-      status: "error",
-      message: error?.message,
-    };
+    if (error instanceof Error) {
+      console.error("Error message:", error.message);
+      return {
+        status: "error",
+        message: error?.message,
+      };
+    } else {
+      return {
+        status: "error",
+        message: "An unknown error occurred",
+      };
+    }
   }
+};
+
+const validateFormData = (formData: FormData) => {
+  const rawFormData = {
+    email: formData.get("email"),
+    password: formData.get("password"),
+  };
+  const validatedFields = LoginFormSchema.safeParse(rawFormData);
+
+  return { rawFormData, validatedFields };
 };
