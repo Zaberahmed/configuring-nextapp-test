@@ -1,17 +1,21 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Label, TextInput } from "flowbite-react";
+import { FloatingLabel } from "flowbite-react";
 import { useFormState } from "react-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { State, authenticate } from "./actions";
+import SubmitButton from "./submit-button";
 import { LoginFormFields, LoginFormSchema } from "./validation";
 
 const LoginForm = () => {
   const [state, formAction] = useFormState<State, FormData>(authenticate, null);
 
-  const { register } = useForm<LoginFormFields>({
+  const {
+    register,
+    formState: { isValid },
+  } = useForm<LoginFormFields>({
     resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       email: "",
@@ -21,7 +25,7 @@ const LoginForm = () => {
 
   if (state?.status === "success") {
     toast.success(state?.message);
-  } else {
+  } else if (state?.status === "error") {
     toast.error(state?.message);
   }
 
@@ -31,36 +35,31 @@ const LoginForm = () => {
       <form
         className="flex max-w-md flex-col gap-4"
         action={formAction}>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="email"
-              value="Email"
-            />
-          </div>
-          <TextInput
-            id="email"
+        <div className="mb-2 block">
+          <FloatingLabel
+            aria-live="polite"
+            label={"Email"}
+            variant={"outlined"}
             type="email"
-            placeholder="name@flowbite.com"
+            id="email"
+            className="focus:border-teal-500 peer-focus:text-teal-600 "
             {...register("email")}
           />
         </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="password"
-              value="Password"
-            />
-          </div>
-          <TextInput
+
+        <div className="mb-2 block">
+          <FloatingLabel
+            aria-live="polite"
+            label={"Password"}
+            variant={"outlined"}
             id="password"
             type="password"
+            className="focus:border-teal-500 peer-focus:text-teal-600"
             {...register("password")}
           />
         </div>
 
-        <Button type="submit">Submit</Button>
-        {/*Need to disable button if values are not filled or status pending*/}
+        <SubmitButton isValid={isValid} />
       </form>
     </main>
   );

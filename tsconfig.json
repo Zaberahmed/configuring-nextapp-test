@@ -12,7 +12,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "noImplicitAny": true, //Added for typescript any check
+    "noImplicitAny": true,
     "plugins": [
       {
         "name": "next",
